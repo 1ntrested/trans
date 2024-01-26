@@ -3,8 +3,6 @@ from .models import User
 from werkzeug.security import generate_password_hash,check_password_hash
 from . import db
 from flask_login import login_user,login_required,logout_user,current_user
-import qrcode
-import shutil
 
 auth = Blueprint('auth', __name__)
 
@@ -16,7 +14,7 @@ def login():
         phone = request.form.get('Mobile')
         password = request.form.get('password')
 
-        user = User.query.filter_by(email=phone).first()
+        user = User.query.filter_by(phone=phone).first()
 
         if user:
             if check_password_hash(user.password,password):
@@ -60,10 +58,6 @@ def signup():
             db.session.commit()
             login_user(new_user,remember=True)
             id = current_user.id
-            g = qrcode.make("https://medurgencyhub.onrender.com/getinfo/{}".format(id))
-            name = '{}.png'.format(id)
-            g.save(name)
-            shutil.move(fr'{name}','website/static/')
 
             return redirect(url_for("views.details"))
             flash("Account Created now enter your details",category="success")
