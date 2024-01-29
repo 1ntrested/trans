@@ -1,11 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 </head>
 <body>
-{% include "alerts.html" %}
+
+<center><h1>Transaction History</h1></center>
+<center><h2>+1 567-347-1540</h2></center>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Details</th>
+    <th>Date/Time</th>
+  </tr>
+  {% for data in current_user.history %}
+  <tr>
+    <td>{{data[0]}}</td>
+    <td>{{data[1]}}</td>
+    <td>{{data[2]}}</td>
+  </tr>
+  {% endfor %}
+</table>
 
 </body>
 </html>
