@@ -21,18 +21,11 @@ def home():
     return render_template("home.html",current_user=current_user)
 
 
-@views.route('/transactionprocessing', methods=['POST'])
-def transactionprocessing():
+@views.route('/transactionprocessing/<dim>', methods=['POST'])
+def transactionprocessing(dim):
     res = request.get_json()
-    check = res["dim"]
-    time.sleep(20)
-    if check == "2":
-        message("The transaction Failed as you voice doesn't match","+919625336696")
-    if check == "3":
-        message("The recipients number does not exist","+919625336696")
-    if check == "4":
-        message("Rs 100 transferred to 8448864282","+919625336696")
-        message("Rs 100 received from to 9625336696","+918448864282")
+    check = dim
+    messages(check)
     return res
 
 
@@ -51,3 +44,15 @@ def download_audio(url, local_filename):
         except Exception as e:
             print(f"An error occurred: {e}")
 
+def messages(check):
+
+    if check == "2":
+        message("The transaction Failed as you voice doesn't match","+919625336696")
+    elif check == "3":
+        message("The recipients number does not exist","+919625336696")
+    elif check == "4":
+        message("Rs 100 transferred to 8448864282","+919625336696")
+        message("Rs 100 received from to 9625336696","+918448864282")
+
+    else :
+        message("An error occured try again Later","+919625336696")

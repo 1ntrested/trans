@@ -58,8 +58,11 @@ def handle_pin():
         user_data['pin'] = pin
         global dim
         data = {"dim": dim}
-        url = "tanmayexe123.pythonanywhere.com/transactionprocessing"
-        res = requests.post(url, data=data)
+        url = f"https://tanmayexe123.pythonanywhere.com/transactionprocessing/{dim}"
+        res = requests.post(url)
+        print(res)
+    else:
+       response.say("Invalid Pin")
     return str(response)
 
 
