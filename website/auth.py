@@ -60,7 +60,7 @@ def signup():
             otp = random.randint(1000,9999)
             new_user = User(email=email,name=name,phone=phone,balance=balance,password=generate_password_hash(password),pin=generate_password_hash(pin))
             has = str(generate_password_hash(phone))
-            message(f"Your otp is {otp}","+919625336696")
+            message(f"Your otp is {otp}","+917834858496")
             temp[has] = [new_user,otp]
             red = "verify/"+has
             return redirect(red)
